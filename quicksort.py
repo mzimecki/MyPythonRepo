@@ -1,7 +1,6 @@
 import sys
 from time import time
-from functools import wraps
-from random import shuffle
+from random import shuffle, randint
 from contextlib import contextmanager
 
 sys.setrecursionlimit(10000)
@@ -25,17 +24,17 @@ def quicksort(list):
 
 
 def quicksort2(list):
-    """quicksort with pivot in the middle"""
+    """quicksort with random pivot"""
     if len(list) < 2:
         return list
-    piv_idx = int((0 + len(list)-1)/2)
-    pivot = list.pop(int(piv_idx))
+    piv_idx = randint(0, len(list) - 1)
+    pivot = list.pop(piv_idx)
     greater = [elem for elem in list if elem >= pivot]
     less = [elem for elem in list if elem < pivot]
     return quicksort2(less) + [pivot] + quicksort2(greater)
 
 
-myList = list(range(100000))
+myList = list(range(10000))
 shuffle(myList)
 with measure('quicksort'):
     quicksort(myList)
