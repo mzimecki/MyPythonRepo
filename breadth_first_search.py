@@ -9,16 +9,6 @@ class Person:
         self.is_car_dealer = is_car_dealer
 
 
-john = Person('John', True, [])
-patrice = Person('Patrice', False, [])
-tamara = Person('Tamara', False, [])
-jerry = Person('Jerry', False, [])
-cecil = Person('Cecil', False, [tamara, jerry])
-alice = Person('Alice', False, [patrice])
-bart = Person('Bart', False, [john, patrice])
-me = Person('Me', False, [alice, bart, cecil])
-
-
 def search(person):
     search_queue = collections.deque()
     search_queue += person.friends
@@ -34,8 +24,6 @@ def search(person):
                 searched.append(person)
     return False
 
-
-search(me)
 
 
 
