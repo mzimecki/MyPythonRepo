@@ -28,13 +28,13 @@ def quicksort2(list):
     if len(list) < 2:
         return list
     piv_idx = randint(0, len(list) - 1)
-    pivot = list.pop(piv_idx)
-    greater = [elem for elem in list if elem >= pivot]
-    less = [elem for elem in list if elem < pivot]
+    pivot = list[piv_idx]
+    greater = [elem for elem in list[:piv_idx] + list[piv_idx+1:] if elem >= pivot]
+    less = [elem for elem in list[:piv_idx] + list[piv_idx+1:] if elem < pivot]
     return quicksort2(less) + [pivot] + quicksort2(greater)
 
 
-myList = list(range(10000))
+myList = list(range(100000))
 shuffle(myList)
 with measure('quicksort'):
     quicksort(myList)
