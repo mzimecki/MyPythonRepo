@@ -23,8 +23,3 @@ def search(person):
                 search_queue += person.friends
                 searched.append(person)
     return False
-
-
-
-
-

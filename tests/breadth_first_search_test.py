@@ -4,7 +4,7 @@ from breadth_first_search import Person
 
 
 class BreadthFirstSearchTest(TestCase):
-
+    
     def test_positive_search(self):
         # having
         john = Person('John', True, [])
@@ -18,7 +18,7 @@ class BreadthFirstSearchTest(TestCase):
 
         # when
         result = breadth_first_search.search(me)
-
+        
         # then
         self.assertTrue(result)
 
