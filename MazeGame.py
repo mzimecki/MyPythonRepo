@@ -13,11 +13,19 @@ class Pen(turtle.Turtle):
         self.penup()
         self.speed(0)
 
+class Player(turtle.Turtle):
+    def __init__(self):
+        turtle.Turtle.__init__(self)
+        self.shape("square")
+        self.color("blue")
+        self.penup()
+        self.speed(0)
+
 levels = []
 
 level_1 = [
     'XXXXXXXXXXXXXXXXXXXXXXXXX',
-    'X  XXXXXXX          XXXXX',
+    'XP XXXXXXX          XXXXX',
     'X  XXXXXXX  XXXXXX  XXXXX',
     'X       XX  XXXXXX  XXXXX',
     'X       XX  XXX        XX',
@@ -54,9 +62,13 @@ def setup_up_maze(level):
             if character == "X":
                 pen.goto(x_coor, y_coor)
                 pen.stamp()
+            if character == "P":
+                player.goto(x_coor, y_coor)
+                player.stamp()
 
 
 pen = Pen()
+player = Player()
 
 setup_up_maze(levels[0])
 
