@@ -44,7 +44,7 @@ def make_grid(x, y):
 
 
 def mark_solution_cell(x, y, color):
-    pygame.draw.rect(screen, color, [x + int(CELL_SIZE / 2), y + int(CELL_SIZE / 2), 2, 2])
+    pygame.draw.rect(screen, color, [x + CELL_SIZE // 2, y + CELL_SIZE // 2, 2, 2])
     pygame.display.update()
 
 
@@ -153,3 +153,5 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+
+pygame.quit()
