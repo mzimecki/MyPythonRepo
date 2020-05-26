@@ -1,25 +1,20 @@
-import turtle
+import pygame
+import os
 
-wn = turtle.Screen()
-wn.bgcolor("black")
-wn.title("A maze game")
-wn.setup(700, 700)
+WIDTH = 600
+HEIGHT = 600
+FPS = 30
 
-class Pen(turtle.Turtle):
-    def __init__(self):
-        turtle.Turtle.__init__(self)
-        self.shape("square")
-        self.color("white")
-        self.penup()
-        self.speed(0)
+BG = pygame.transform.scale(pygame.image.load(os.path.join("assets", "background-black.png")), (WIDTH, HEIGHT))
 
-class Player(turtle.Turtle):
-    def __init__(self):
-        turtle.Turtle.__init__(self)
-        self.shape("square")
-        self.color("blue")
-        self.penup()
-        self.speed(0)
+os.environ['SDL_VIDEO_CENTERED'] = '1'  #  center whole window position
+
+pygame.init()
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Maze game")
+clock = pygame.time.Clock()
+
+CELL_SIZE = 24
 
 levels = []
 
@@ -53,24 +48,31 @@ level_1 = [
 
 levels.append(level_1)
 
+
+def mark_cell(x, y, color):
+    pygame.draw.rect(screen, color, [x + 1, y + 1, CELL_SIZE - 1, CELL_SIZE - 1])
+
+
 def setup_up_maze(level):
     for y in range(len(level)):
         for x in range(len(level[y])):
             character = level[y][x]
-            x_coor = -288 + (x * 24)
-            y_coor = 288 - (y * 24)
+            x_coor = x * CELL_SIZE
+            y_coor = y * CELL_SIZE
             if character == "X":
-                pen.goto(x_coor, y_coor)
-                pen.stamp()
-            if character == "P":
-                player.goto(x_coor, y_coor)
-                player.stamp()
+                mark_cell(x_coor, y_coor, (255, 255, 255))
 
 
-pen = Pen()
-player = Player()
+running = True
+while running:
+    screen.blit(BG, (0,0))
+    setup_up_maze(levels[0])
+    pygame.display.update()
 
-setup_up_maze(levels[0])
+    clock.tick(FPS)
 
-while True:
-    pass
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+pygame.quit()
