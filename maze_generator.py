@@ -44,7 +44,7 @@ def make_grid(x, y):
 
 
 def mark_solution_cell(x, y, color):
-    pygame.draw.rect(screen, color, [x + CELL_SIZE/2, y + CELL_SIZE/2, 2, 2])
+    pygame.draw.rect(screen, color, [x + CELL_SIZE // 2, y + CELL_SIZE // 2, 2, 2])
     pygame.display.update()
 
 
@@ -54,22 +54,22 @@ def mark_cell(x, y, color):
 
 
 def go_up(x, y):
-    pygame.draw.rect(screen, BLUE, [x + 1, y - CELL_SIZE + 1, CELL_SIZE - 1, 2*CELL_SIZE - 1])
+    pygame.draw.rect(screen, BLUE, [x + 1, y - CELL_SIZE + 1, CELL_SIZE - 1, 2 * CELL_SIZE - 1])
     pygame.display.update()
 
 
 def go_down(x, y):
-    pygame.draw.rect(screen, BLUE, [x + 1, y + 1, CELL_SIZE - 1, 2*CELL_SIZE - 1])
+    pygame.draw.rect(screen, BLUE, [x + 1, y + 1, CELL_SIZE - 1, 2 * CELL_SIZE - 1])
     pygame.display.update()
 
 
 def go_right(x, y):
-    pygame.draw.rect(screen, BLUE, [x + 1, y + 1, 2*CELL_SIZE - 1, CELL_SIZE - 1])
+    pygame.draw.rect(screen, BLUE, [x + 1, y + 1, 2 * CELL_SIZE - 1, CELL_SIZE - 1])
     pygame.display.update()
 
 
 def go_left(x, y):
-    pygame.draw.rect(screen, BLUE, [x - CELL_SIZE + 1, y + 1, 2*CELL_SIZE - 1, CELL_SIZE - 1])
+    pygame.draw.rect(screen, BLUE, [x - CELL_SIZE + 1, y + 1, 2 * CELL_SIZE - 1, CELL_SIZE - 1])
     pygame.display.update()
 
 
@@ -77,7 +77,7 @@ def get_unvisited_neighbors(x, y):
     neighbors = []
     if (x + CELL_SIZE, y) in grid and (x + CELL_SIZE, y) not in visited:  # right neighbor
         neighbors.append((x + CELL_SIZE, y))
-    if ((x, y + CELL_SIZE)) in grid and (x, y + CELL_SIZE) not in visited:  # down neighbor
+    if (x, y + CELL_SIZE) in grid and (x, y + CELL_SIZE) not in visited:  # down neighbor
         neighbors.append((x, y + CELL_SIZE))
     if (x - CELL_SIZE, y) in grid and (x - CELL_SIZE, y) not in visited:  # left neighbor
         neighbors.append((x - CELL_SIZE, y))
@@ -87,13 +87,13 @@ def get_unvisited_neighbors(x, y):
 
 
 def remove_walls_between_cells(x1, y1, x2, y2):
-     if x1 == x2 and y2 == y1 + CELL_SIZE:
+    if x1 == x2 and y2 == y1 + CELL_SIZE:
         go_down(x1, y1)
-     if x1 == x2 and y2 == y1 - CELL_SIZE:
+    if x1 == x2 and y2 == y1 - CELL_SIZE:
         go_up(x1, y1)
-     if y1 == y2 and x2 == x1 + CELL_SIZE:
+    if y1 == y2 and x2 == x1 + CELL_SIZE:
         go_right(x1, y1)
-     if y1 == y2 and x2 == x1 - CELL_SIZE:
+    if y1 == y2 and x2 == x1 - CELL_SIZE:
         go_left(x1, y1)
 
 
@@ -105,7 +105,7 @@ def generate_maze(x, y):
     # While the stack is not empty
     while len(stack) > 0:
         # pop a cell from the stack and make it a current cell
-        (current_cell_x, current_cell_y)  = stack.pop()
+        (current_cell_x, current_cell_y) = stack.pop()
 
         # If the current cell has any neighbours which have not been visited 
         neighbors = get_unvisited_neighbors(current_cell_x, current_cell_y)
@@ -116,7 +116,7 @@ def generate_maze(x, y):
             # Choose one of the unvisited neighbours
             next_neighbor_index = random.randint(0, len(neighbors) - 1)
             (next_cell_x, next_cell_y) = neighbors[next_neighbor_index]
-            
+
             # Remove the wall between the current cell and the chosen cell
             remove_walls_between_cells(current_cell_x, current_cell_y, next_cell_x, next_cell_y)
 
@@ -154,3 +154,4 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
+pygame.quit()

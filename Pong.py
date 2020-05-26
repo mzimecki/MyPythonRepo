@@ -11,7 +11,7 @@ score_p2 = 0
 screen = curses.initscr()
 curses.curs_set(0)
 screen_height, screen_width = screen.getmaxyx()
-window = curses.newwin(screen_height, screen_width, 0, 0)  # create new window
+window = curses.newwin(screen_height, screen_width, 0, 0)  # create new window 
 window.keypad(True)  # enable arrow keys
 window.timeout(100)
 
