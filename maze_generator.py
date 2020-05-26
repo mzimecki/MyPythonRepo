@@ -1,7 +1,10 @@
 import pygame
 import random
 import time
+import os
 from collections import deque
+
+os.environ['SDL_VIDEO_CENTERED'] = '1'  #  center whole window position
 
 WIDTH = 640
 HEIGHT = 640
