@@ -67,7 +67,7 @@ def visualize_branches(nodes):
 def visualize_tree(node):
     visualize_nodes(node)
     walk_depth_first(node)
-    visualize_branches(visited_nodes) #  not working to be fix
+    visualize_branches(visited_nodes)  # not working to be fixed
 
 
 def main():
